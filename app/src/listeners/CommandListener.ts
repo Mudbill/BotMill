@@ -3,7 +3,7 @@ import glob from 'glob';
 import path from 'path';
 import { prefix } from '../../config';
 import Command from '../interfaces/Command';
-import { console } from '../util/log';
+import { console, channel } from '../util/log';
 
 const map: Map<string, Command> = new Map();
 export { map as commands };
@@ -32,16 +32,16 @@ export default async function (client: Client) {
 		if (!msg.content.startsWith(prefix)) return
 
 		const args = msg.content.substr(prefix.length).split(' ')
-		const command = args.shift()
-		const obj = map.get(command)
+		const cmdstr = args.shift()
+		const command = map.get(cmdstr)
 
-		if (obj) {
-			// if (!msg.member.permissions.has(obj.permission)) {
-			// 	return console.error('Failed permissions test')
-			// }
+		if (command) {
+			if (!msg.member.hasPermission(command.permission)) {
+				return channel.info(msg, `fuck off, you're not my mom`);
+			}
 
 			try {
-				obj.exec(args, msg)
+				command.exec(args, msg)
 			} catch (err) {
 				return console.error('Failed executing command')
 			}

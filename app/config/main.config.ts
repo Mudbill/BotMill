@@ -21,10 +21,7 @@ const config: Config = {
 		`${member} has joined the server!`
 	],
 	responses: [
-		{ on: ['nigga', 'neega'], say: ['get sum bitches on yo dick', 'i heard that'] },
-		{ on: ['tebrick', 'tebrikk', 'tbrix', 'frokostbrikke', 't-brix'], say: ['T-BRIX GANG REPRESENT', 'lunsj?'] },
-		{ on: ['dos', 'ms-dos'], say: ['HAR DU VÆRT I DOS?', 'det er hjernen i maskinen..!'] },
-		{ on: ['rotte'], say: ['🐀', 'https://cdn.discordapp.com/emojis/757959580218032248.png?v=1'] }
+		{ on: ['hello', 'welcome'], say: ['good day', 'cheers'] }
 	]
 }
 

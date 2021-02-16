@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import { Message } from 'discord.js';
 
 const con = {
 	log: (msg: any, ...obj: any) => {
@@ -16,11 +17,14 @@ const con = {
 };
 
 const channel = {
-	info: (msg: any) => {
-
+	info: (message: Message, text: any) => {
+		message.channel.send(text);
 	},
-	error: (msg: any) => {
-
+	warn: (message: Message, text: any, exception: Error) => {
+		message.channel.send(text);
+	},
+	error: (message: Message, text: any, exception: Error) => {
+		message.channel.send(text);
 	}
 }
 

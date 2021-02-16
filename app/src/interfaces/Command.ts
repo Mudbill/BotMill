@@ -1,8 +1,8 @@
-import { Message } from "discord.js";
+import { Message, PermissionResolvable } from "discord.js";
 
 export default interface Command {
 	command: string,
-	permission?: string,
+	permission: PermissionResolvable,
 	description?: string,
 	exec: (args: string[], msg: Message) => any;
 }
