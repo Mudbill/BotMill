@@ -1,7 +1,9 @@
+import { Permissions } from 'discord.js';
 import Command from '../interfaces/Command'
 
 const command: Command = {
 	command: 'ping',
+	permission: Permissions.FLAGS.SEND_MESSAGES,
 	exec: async (args, msg) => {
 		const msg2 = await msg.channel.send('🙂');
 		const delay = msg2.createdTimestamp - msg.createdTimestamp;

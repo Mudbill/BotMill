@@ -1,7 +1,9 @@
+import { Permissions } from "discord.js";
 import Command from "../interfaces/Command";
 
 const command: Command = {
 	command: 'restart',
+	permission: Permissions.FLAGS.ADMINISTRATOR,
 	exec: async (args, msg) => {
 		msg.channel.send('Gonna kill myself, I hope someone will catch my fall...');
 		setTimeout(() => {
