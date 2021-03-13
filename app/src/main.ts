@@ -3,6 +3,7 @@ import { token } from '../config'
 import { console } from './util/log'
 import glob from 'glob'
 import path from 'path'
+import { commands } from './listeners/CommandListener';
 
 async function main() {
 	// Initialize the client
@@ -29,6 +30,17 @@ async function main() {
 			console.error(`Failed to load listener module: ${file}`, err)
 		}
 	}
+
+	process.on('SIGTERM', async () => {
+		console.info('Shutting down bot...');
+		commands.forEach(async (x) => {
+			if (x.exit) {
+				console.info(`Cleaning up command: ${x.command}`);
+				await x.exit();
+			}
+		})
+		process.exit(0);
+	})
 }
 
 main()
