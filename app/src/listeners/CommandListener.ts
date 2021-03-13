@@ -2,7 +2,7 @@ import { Client } from 'discord.js';
 import glob from 'glob';
 import path from 'path';
 import { prefix } from '../../config';
-import Command from '../interfaces/Command';
+import Command from '../../@types/Command';
 import { console, channel } from '../util/log';
 
 const map: Map<string, Command> = new Map();
@@ -20,6 +20,7 @@ export default async function (client: Client) {
 				console.error(`Duplicate command ${cmd.command}`);
 				continue;
 			}
+			cmd.init && cmd.init();
 			map.set(cmd.command, cmd);
 		} catch (err) {
 			console.error('Failed to import command', err);
